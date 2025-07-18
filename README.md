@@ -68,13 +68,6 @@ This project demonstrates:
 
 ---
 
-## 🙌 Want to Contribute?
-
-Start by checking out the `CONTRIBUTING.md` file in either repo.
-
-
----
-
 ## 📚 Terraform Documentation
 
 - [Backend Terraform Guide](terraform-backend.md)
