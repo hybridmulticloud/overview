@@ -67,7 +67,3 @@ This project demonstrates:
 - Clear documentation and ownership — easy for teams or hiring managers to understand and extend
 
 ---
-
-## 🙌 Want to Contribute?
-
-Start by checking out the `CONTRIBUTING.md` file in either repo.
