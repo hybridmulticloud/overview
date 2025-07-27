@@ -103,19 +103,14 @@ flowchart LR
 ## 📈 Combined Architecture (Mermaid Diagram)
 ```mermaid
 flowchart LR
-  %% Source trigger
+  %% Trigger
   GH[GitHub Actions]
+    -->|infra.yml, lambda-deploy.yml,\nfrontend.yml, monitoring.yml| TF[Terraform]
 
-  %% CI/CD orchestration
-  subgraph CI/CD Workflows
-    GH -->|infra.yml, lambda-deploy.yml, frontend.yml, monitoring.yml| TF[Terraform]
-  end
-
-  %% AWS Infrastructure
-  subgraph AWS Infrastructure
-    direction LR
+  %% AWS Infra
+  subgraph AWS_Infrastructure
     TF --> APIGW[API Gateway]
-    TF --> S3[S3 (Static Site)]
+    TF --> S3[S3: Static Site]
 
     subgraph Compute
       APIGW --> Lambda[AWS Lambda]
@@ -123,16 +118,16 @@ flowchart LR
       Lambda --> CW[CloudWatch]
     end
 
-    subgraph CDN & DNS
+    subgraph CDN_and_DNS
       S3 --> CF[CloudFront CDN]
-      CF --> Route53[Route 53 DNS]
+      CF --> Route53[Route 53]
       Route53 --> IU[Internet Users]
     end
   end
 
-  %% Optional: show how dynamic data might flow through CDN
-  DynamoDB -.->|cached responses| CF
-  IU -->|requests static & dynamic| CF
+  %% Data flow & caching
+  DynamoDB -.-> CF
+  IU --> CF
 ``` 
 
 ---
