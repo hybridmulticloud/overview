@@ -165,7 +165,11 @@ flowchart LR
 ```mermaid
 flowchart LR
   subgraph CI/CD
-    GH["GitHub Actions"] ...
+    GH["GitHub Actions"]
+    GH -->|deploy-backend.yml| TF["Terraform (Infra)"]
+    GH -->|lambda-deploy.yml| LD["Lambda Deployment"]
+    GH -->|deploy-frontend.yml| FD["Frontend Deployment"]
+    GH -->|deploy-monitoring.yml| MD["Monitoring Deployment"]
   end
 
   subgraph AWS_Infrastructure
@@ -179,6 +183,9 @@ flowchart LR
     Route53 --> IU["Internet Users"]
     DynamoDB -.-> CF
     IU --> CF
+    LD --> Lambda
+    FD --> CF
+    MD --> CW
   end
 ```
 
