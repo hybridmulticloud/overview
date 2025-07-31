@@ -27,8 +27,6 @@ resume-api-backend/
 ├── monitoring/             # Terraform for monitoring (CloudWatch, Synthetics)
 ├── src/                    # Application source code
 │   └── update_visitor_count.py  # Lambda handler logic
-├── tests/                  # Unit & integration tests (pytest + moto)
-├── requirements.txt        # Python dependencies
 └── README.md               # This file
 ```
 
