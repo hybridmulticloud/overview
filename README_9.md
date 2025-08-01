@@ -144,8 +144,8 @@ flowchart LR
   GH[GitHub Actions]
 
   subgraph CI_CD
-    GH --> TF["Infra: Backend + Frontend"]
-    GH --> LD["Lambda Zip Upload"]
+    GH --> TF["Infra Deploy: Backend + Frontend"]
+    GH --> LD["Lambda Deploy"]
     GH --> FD["Frontend Asset Upload + CF Invalidation"]
     GH --> MD["Monitoring Deploy"]
   end
