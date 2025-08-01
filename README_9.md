@@ -150,32 +150,33 @@ flowchart LR
     GH --> MD["Monitoring Deploy"]
   end
 
-  subgraph AWS
+  subgraph AWS_Infra
     TF --> APIGW["API Gateway"]
     TF --> Lambda["Lambda Function"]
     TF --> DynamoDB["DynamoDB"]
+    APIGW --> Lambda
+    Lambda --> DynamoDB
+  end
+
+  subgraph AWS_Frontend
     TF --> S3["S3 Static Site"]
     TF --> CF["CloudFront CDN"]
     TF --> Route53["Route 53 DNS"]
-
-    LD --> Lambda
     FD --> S3
     FD --> CF
-    MD --> Canary["Synthetics Canary"]
-    MD --> CW["CloudWatch"]
-    Canary --> CW
-
-    APIGW --> CW
-    Lambda --> CW
-
     CF --> S3
     CF --> APIGW
     CF --> Route53
     Route53 --> User["Users"]
     User --> CF
+  end
 
-    APIGW --> Lambda
-    Lambda --> DynamoDB
+  subgraph AWS_Monitoring
+    MD --> Canary["Synthetics Canary"]
+    MD --> CW["CloudWatch"]
+    Canary --> CW
+    APIGW --> CW
+    Lambda --> CW
   end
 ```
 
