@@ -175,8 +175,8 @@ flowchart LR
     MD --> Canary["Synthetics Canary"]
     MD --> CW["CloudWatch"]
     Canary --> CW
-    APIGW --> CW
-    Lambda --> CW
+    CW --> APIGW
+    CW --> Lambda
   end
 ```
 
