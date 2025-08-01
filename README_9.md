@@ -25,13 +25,45 @@ This project is a full-stack cloud-native resume viewer that exposes a serverles
 ## 📁 Repository Structure
 
 ### `resume-api-backend`
-- `src/lambda_function.py`: core API logic (view counter)
-- `infra/*.tf`: Terraform for Lambda, API Gateway, DynamoDB
-- `.github/workflows/`: CI/CD pipelines
+resume-api-backend-main/
+├── .github/
+│   └── workflows/
+│       ├── deploy-backend.yml
+│       ├── deploy-monitoring.yml
+│       └── lambda-deploy.yml
+├── infra/
+│   ├── data-sources.tf
+│   ├── frontend_infra.tf
+│   ├── lambda.tf
+│   ├── main.tf
+│   ├── outputs.tf
+│   ├── providers.tf
+│   ├── terraform.tf
+│   └── variables.tf
+├── monitoring/
+│   ├── canaries.tf
+│   ├── data-sources.tf
+│   ├── iam.tf
+│   ├── locals.tf
+│   ├── monitoring.tf
+│   ├── outputs.tf
+│   ├── providers.tf
+│   ├── s3.tf
+│   ├── terraform.tf
+│   └── variables.tf
+├── src/
+│   └── lambda_function.py
+└── README.md
 
 ### `resume-api-frontend`
-- `public/index.tmpl.html`: dynamic HTML with injected API URL
-- `.github/workflows/`: deploy to S3 + invalidate CloudFront
+resume-api-frontend-main/
+├── .github/
+│   └── workflows/
+│       └── deploy-frontend.yml
+├── public/
+│   ├── index.tmpl.html
+│   └── style.css
+└── README.md
 
 ---
 
