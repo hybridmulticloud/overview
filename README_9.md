@@ -55,8 +55,10 @@ resume-api-backend-main/
 ├── src/
 │   └── lambda_function.py
 └── README.md
+</code></pre>
 
 ### `resume-api-frontend`
+<pre><code>
 resume-api-frontend-main/
 ├── .github/
 │   └── workflows/
