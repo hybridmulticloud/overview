@@ -72,7 +72,7 @@ In GitHub Actions or local:
 ```mermaid
 flowchart TD
   User[Browser] --> CF[CloudFront CDN]
-  CF --> S3[Static Website (S3)]
+  CF --> S3[Static Website]
   CF --> API[API Gateway]
   API --> Lambda[AWS Lambda]
   Lambda --> DB[DynamoDB]
