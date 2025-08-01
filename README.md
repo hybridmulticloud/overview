@@ -9,6 +9,16 @@
 
 This project is a full-stack cloud-native resume viewer that exposes a serverless REST API to track profile views and hosts a static website frontend. It's built with AWS and managed using Infrastructure as Code (Terraform).
 
+## 📘 Inspired by the Cloud Resume Challenge
+
+This project aligns with the official Cloud Resume Challenge steps:
+
+1. Static resume delivered via S3 + CloudFront + custom DNS  
+2. Visitor counter implemented using API Gateway, Lambda, and DynamoDB  
+3. Infrastructure fully modeled with Terraform  
+4. CI/CD via GitHub Actions across frontend, backend, and monitoring  
+5. Observability with CloudWatch alarms and canary testing
+
 ---
 
 ## 🧠 Key Technologies
@@ -190,7 +200,7 @@ flowchart LR
   subgraph CI_CD
     GH --> TF["Infra Deploy: Backend + Frontend"]
     GH --> LD["Lambda Deploy"]
-    GH --> FD["Frontend Asset Upload + CF Invalidation"]
+    GH --> FD["Frontend Deploy"]
     GH --> MD["Monitoring Deploy"]
   end
 
@@ -198,6 +208,9 @@ flowchart LR
     TF --> APIGW["API Gateway"]
     TF --> Lambda["Lambda Function"]
     TF --> DynamoDB["DynamoDB"]
+    TF --> ArtifactS3["S3 (Lambda Artifact)"]
+    LD --> ArtifactS3
+    ArtifactS3 -- used by --> Lambda
     APIGW --> Lambda
     Lambda --> DynamoDB
   end
@@ -206,21 +219,20 @@ flowchart LR
     TF --> S3["S3 Static Site"]
     TF --> CF["CloudFront CDN"]
     TF --> Route53["Route 53 DNS"]
-    FD --> S3
-    FD --> CF
+    FD -- asset upload --> S3
+    FD -- invalidation --> CF
     CF --> S3
     CF --> APIGW
-    CF --> Route53
-    Route53 --> User["Users"]
+    Route53 --> CF
     User --> CF
   end
 
   subgraph AWS_Monitoring
     MD --> Canary["Synthetics Canary"]
     MD --> CW["CloudWatch"]
-    Canary --> CW
-    CW --> APIGW
-    CW --> Lambda
+    CW --> Canary
+    CW --> Lambda 
+    CW --> APIGW 
   end
 ```
 
