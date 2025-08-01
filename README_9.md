@@ -97,8 +97,9 @@ These must be set locally or inside GitHub Actions secrets:
 - `MONITORING_AWS_SECRET_ACCESS_KEY`
 - `TF_API_TOKEN` *(for Terraform Cloud CLI or backend access)*
 - `API_URL` *(used to inject into frontend index page during deploy)*
-- 'ALERT_EMAIL_ADDRESS'
-- 'ROUTE53_ZONE_ID'
+- `ALERT_EMAIL_ADDRESS`
+- `ROUTE53_ZONE_ID`
+  
 ---
 
 ## 🧪 CI/CD Summary
