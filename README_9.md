@@ -86,11 +86,19 @@ aws s3 sync . s3://<bucket-name> --delete
 
 ## 🔐 Environment Variables
 
-In GitHub Actions or local:
+These must be set locally or inside GitHub Actions secrets:
+
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
 - `AWS_REGION`
-
+- `AWS_DEFAULT_REGION` *(optional fallback)*
+- `AWS_ACCOUNT_ID`
+- `MONITORING_AWS_ACCESS_KEY_ID`
+- `MONITORING_AWS_SECRET_ACCESS_KEY`
+- `TF_API_TOKEN` *(for Terraform Cloud CLI or backend access)*
+- `API_URL` *(used to inject into frontend index page during deploy)*
+- 'ALERT_EMAIL_ADDRESS'
+- 'ROUTE53_ZONE_ID'
 ---
 
 ## 🧪 CI/CD Summary
