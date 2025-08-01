@@ -168,7 +168,7 @@ flowchart LR
 
 ## 🙋‍♂️ Author & Contribution
 
-This project was fully designed and implemented by Kerem Kirci, a Senior Technical COnsultant focused on hybrid/multi-cloud automation. It showcases:
+This project was fully designed and implemented by Kerem Kirci, a Senior Technical Consultant focused on hybrid/multi-cloud automation. It showcases:
 
 - Serverless API design with AWS Lambda
 - Full Infrastructure as Code with Terraform
