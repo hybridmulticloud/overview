@@ -144,23 +144,31 @@ flowchart LR
   GH[GitHub Actions]
 
   subgraph CI_CD
-    GH --> TF["Terraform (Infra)"]
-    GH --> LD["Lambda Deploy"]
-    GH --> FD["Frontend Deploy"]
+    GH --> TF["Terraform (Infra: Backend + Frontend)"]
+    GH --> LD["Lambda Zip Upload"]
+    GH --> FD["Frontend Asset Upload"]
     GH --> MD["Monitoring Deploy"]
   end
 
   subgraph AWS
     TF --> APIGW["API Gateway"]
-    APIGW --> Lambda["Lambda"]
-    Lambda --> DynamoDB["DynamoDB"]
-    Lambda --> CW["CloudWatch"]
+    TF --> Lambda["Lambda Function"]
+    TF --> DynamoDB["DynamoDB"]
+    TF --> S3["S3 Static Site"]
+    TF --> CF["CloudFront CDN"]
+    TF --> Route53["Route 53 DNS"]
+    TF --> CW["CloudWatch"]
+
     LD --> Lambda
+    FD --> S3
     MD --> CW
-    FD --> S3["S3 Bucket"]
-    S3 --> CF["CloudFront"]
-    CF --> Route53["Route 53"]
+
+    CF --> S3
+    CF --> APIGW
+    CF --> Route53
     Route53 --> User["Users"]
+    APIGW --> Lambda
+    Lambda --> DynamoDB
   end
 ```
 
