@@ -25,6 +25,7 @@ This project is a full-stack cloud-native resume viewer that exposes a serverles
 ## 📁 Repository Structure
 
 ### `resume-api-backend`
+<pre><code>
 resume-api-backend-main/
 ├── .github/
 │   └── workflows/
@@ -64,7 +65,7 @@ resume-api-frontend-main/
 │   ├── index.tmpl.html
 │   └── style.css
 └── README.md
-
+</code></pre>
 ---
 
 ## 🚀 How to Deploy
