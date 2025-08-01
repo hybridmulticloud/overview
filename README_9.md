@@ -144,7 +144,7 @@ flowchart LR
   GH[GitHub Actions]
 
   subgraph CI_CD
-    GH --> TF["Terraform (Infra: Backend + Frontend)"]
+    GH --> TF["Terraform (Infra: Backend + Frontend Infra)"]
     GH --> LD["Lambda Zip Upload"]
     GH --> FD["Frontend Asset Upload"]
     GH --> MD["Monitoring Deploy"]
@@ -157,11 +157,13 @@ flowchart LR
     TF --> S3["S3 Static Site"]
     TF --> CF["CloudFront CDN"]
     TF --> Route53["Route 53 DNS"]
-    TF --> CW["CloudWatch"]
 
     LD --> Lambda
     FD --> S3
-    MD --> CW
+    FD --> CF
+    MD --> Canary["Synthetics Canary"]
+    MD --> CW["CloudWatch"]
+    Canary --> CW
 
     CF --> S3
     CF --> APIGW
