@@ -165,10 +165,15 @@ flowchart LR
     MD --> CW["CloudWatch"]
     Canary --> CW
 
+    APIGW --> CW
+    Lambda --> CW
+
     CF --> S3
     CF --> APIGW
     CF --> Route53
     Route53 --> User["Users"]
+    User --> CF
+
     APIGW --> Lambda
     Lambda --> DynamoDB
   end
